@@ -30,7 +30,9 @@ The Hough Transform function used a function called draw lines to actually draw 
 
 The way I decided which line belonged to which lane line(each line either belonged to the left or right lane), was slope.  The left lane line would have a negative slope, and the right lane line would have a positive slope.  From there, I would calculate the average slope, and y intercept of each lane line, and keep track of the minimum and maximum x coordinates of each line.  Then, I would determine the the corresponding y coordinates of the minimum and maximum x values using the line equation: y = mx + b, and pass these to opencv's line method.
 
-This resulted in the following output: [Final Output]: ./test_images_output/SolidYellowCurve.jpg "Final Output"
+This resulted in the following output: 
+
+[Final Output]:./test_images_output/SolidYellowCurve.jpg "Final Output"
 
 
 ### 2. Identify potential shortcomings with your current pipeline and 3. Suggest possible improvements to your pipeline

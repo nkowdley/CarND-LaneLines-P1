@@ -32,7 +32,7 @@ The way I decided which line belonged to which lane line(each line either belong
 
 This resulted in the following output: 
 
-[Final Output]:./test_images_output/solidYellowCurve.jpg "Final Output"
+[FinalOutput]:./test_images_output/solidYellowCurve.jpg "Final Output"
 
 
 ### 2. Identify potential shortcomings with your current pipeline and 3. Suggest possible improvements to your pipeline

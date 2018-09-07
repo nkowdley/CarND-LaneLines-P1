@@ -28,7 +28,9 @@ Finally, I did a Hough Transform on the image using the provided function.  Usin
 
 The Hough Transform function used a function called draw lines to actually draw the lane lines.  This function took in a number of lines and drew each one individually.  I modified this function in order to draw a single continuous line for each lane line. The first thing I noticed was that there were 2 lane lines that I would need to draw for each picture.  Since this meant that I would be duplicating code for each line, I decided to create a class named Line which would hold all the values for each line.  This also meant that I could hide away a lot of the code and make easier incremental changes to it.  
 
-The way I decided which line belonged to which lane line(each line either belonged to the left or right lane), was slope.  The left lane line would have a negative slope, and the right lane line would have a positive slope.  From there, I would calculate the average slope, and y intercept of each lane line, and keep track of the minimum and maximum x coordinates of each line.  Then, I would determine the the corresponding y coordinates of the minimum and maximum x values using the line equation: y = mx + b, and pass these to opencv's line method.
+The way I decided which line belonged to which lane line(each line either belonged to the left or right lane), was slope.  The left lane line would have a negative slope, and the right lane line would have a positive slope.  From there, I would use the numpy polyfit function to fit the line. Originally, I tried to manually calculate the line, but this caused issues since my equations were not as accurate as polyfit.  Polyfit returned the slope and y intercept of the combined line.
+
+Then, I would determine the the corresponding x coordinates of the minimum and maximum y values(These values were determined by the y coordinates I used for the region of interest) using the line equation: y = mx + b, and pass these to opencv's line method.
 
 
 ### 2. Identify potential shortcomings with your current pipeline and 3. Suggest possible improvements to your pipeline
@@ -39,4 +41,4 @@ There are a few shortcomings to my current pipeline.
 
 2) Threshold.  I feel that my threshold was quite high, as I missed some of the smaller lane lines. I felt that I needed to be more strict on my lane lines to prevent possible outliers.    I would probably relax my thresholds a bit in order to get a better output.
 
-3) Non-linear Lane Lines.  This whole project is based on the idea of linear lane lines.  While in some cases this may work, this will not work in all cases. If I could improve this pipeline, I would figure out how to fit all the coordinates to a polynomial function, and draw the output of that function.
+3) Non-linear Lane Lines.  This whole project is based on the idea of linear lane lines.  While in some cases this may work, this will not work in all cases. If I could improve this pipeline, I would figure out how to fit all the coordinates to a polynomial function, and draw the output of that function.  I sort of do this now with np.polyfit, but I constrain polyfit to only 1st degree lines.
